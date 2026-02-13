@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import "../styles/Home.css";
@@ -10,6 +9,7 @@ import {
   RiStarFill,
   RiMessage2Line
 } from "react-icons/ri";
+import api from "../api";
 
 function IdeaDetails() {
   const { id } = useParams();
@@ -24,8 +24,8 @@ function IdeaDetails() {
   const currentUser = localStorage.getItem("username");
 
   const fetchIdea = () => {
-    axios
-      .get(`http://127.0.0.1:8000/api/ideas/${id}/`)
+    api
+      .get(`/api/ideas/${id}/`)
       .then((res) => {
         setIdea(res.data);
         setSelectedRating(res.data.average_rating || 0);
@@ -38,8 +38,8 @@ function IdeaDetails() {
   }, [id]);
 
   const handleVote = (value) => {
-    axios.post(
-      `http://127.0.0.1:8000/api/ideas/${id}/vote/`,
+    api.post(
+      `/api/ideas/${id}/vote/`,
       { value },
       { headers: { Authorization: `Bearer ${token}` } }
     ).then(() => {
@@ -49,8 +49,8 @@ function IdeaDetails() {
   };
 
   const handleRating = (value) => {
-    axios.post(
-      `http://127.0.0.1:8000/api/ideas/${id}/rate/`,
+    api.post(
+      `/api/ideas/${id}/rate/`,
       { value },
       { headers: { Authorization: `Bearer ${token}` } }
     ).then(() => {
@@ -61,8 +61,8 @@ function IdeaDetails() {
   const handleComment = () => {
     if (!comment.trim()) return;
 
-    axios.post(
-      `http://127.0.0.1:8000/api/ideas/${id}/comments/`,
+    api.post(
+      `/api/ideas/${id}/comments/`,
       { content: comment },
       { headers: { Authorization: `Bearer ${token}` } }
     ).then((res) => {

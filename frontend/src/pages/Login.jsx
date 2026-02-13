@@ -1,7 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import "../styles/Auth.css";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
+import api from "../api";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -16,7 +16,7 @@ function Login() {
       return;
     }
 
-    axios.post("http://127.0.0.1:8000/api/token/", {
+    api.post("/api/token/", {
       username,
       password
     })

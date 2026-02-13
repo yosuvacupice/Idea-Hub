@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import PostCard from "../components/PostCard";
 import "../styles/Home.css";
 import { useLocation } from "react-router-dom";
+import api from "../api";
 
 function Home() {
   const [ideas, setIdeas] = useState([]);
@@ -32,8 +32,8 @@ function Home() {
 
   //  Fetch ideas function (used for refresh also)
   const fetchIdeas = () => {
-    axios
-      .get("http://127.0.0.1:8000/api/ideas/")
+    api
+      .get("/api/ideas/")
       .then((res) => setIdeas(res.data))
       .catch((err) => console.log(err));
   };

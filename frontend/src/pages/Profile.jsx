@@ -3,7 +3,7 @@ import Topbar from "../components/Topbar";
 import "../styles/Home.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api";
 
 function Profile() {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ function Profile() {
   useEffect(() => {
   const token = localStorage.getItem("access");
 
-  axios.get("http://127.0.0.1:8000/api/ideas/me/", {
+  api.get("/api/ideas/me/", {
     headers: { Authorization: `Bearer ${token}` }
   }).then(res => {
     setUserData(res.data);

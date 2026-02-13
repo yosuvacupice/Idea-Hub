@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import "../styles/Home.css";
 import { useLocation } from "react-router-dom";
+import api from "../api";
 
 function Messages() {
   const [activeTab, setActiveTab] = useState("inbox");
@@ -27,8 +27,8 @@ function Messages() {
 
   // Load messages properly
   const fetchMessages = () => {
-    axios
-      .get("http://127.0.0.1:8000/api/ideas/messages/", {
+    api
+      .get("/api/ideas/messages/", {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => setMessages(res.data));
@@ -40,7 +40,7 @@ function Messages() {
 
   // Load users
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/api/ideas/")
+    api.get("/api/ideas/")
       .then(res => {
         const uniqueUsers = [...new Set(res.data.map(i => i.user_name))];
         setUsers(uniqueUsers.filter(u => u !== currentUser));
@@ -63,8 +63,8 @@ function Messages() {
     return;
   }
 
-  axios.post(
-    "http://127.0.0.1:8000/api/ideas/messages/",
+  api.post(
+    "/api/ideas/messages/",
     { receiver_username: receiver, content },
     { headers: { Authorization: `Bearer ${token}` } }
   ).then(() => {

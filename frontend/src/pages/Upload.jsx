@@ -3,7 +3,7 @@ import Topbar from "../components/Topbar";
 import "../styles/Home.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api";
 
 function Upload() {
   const [title, setTitle] = useState("");
@@ -25,7 +25,7 @@ function Upload() {
     formData.append("title", title);
     formData.append("description", description);
 
-    axios.post("http://127.0.0.1:8000/api/ideas/", formData, {
+    api.post("/api/ideas/", formData, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data"

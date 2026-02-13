@@ -6,8 +6,8 @@ import {
   RiDeleteBinLine
 } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "../styles/Home.css";
+import api from "../api";
 
 function PostCard({ idea, refreshPosts }) {
   const navigate = useNavigate();
@@ -21,8 +21,8 @@ function PostCard({ idea, refreshPosts }) {
 
     if (!window.confirm("Delete this post?")) return;
 
-    axios.delete(
-      `http://127.0.0.1:8000/api/ideas/${idea.id}/`,
+    api.delete(
+      `/api/ideas/${idea.id}/`,
       { headers: { Authorization: `Bearer ${token}` } }
     ).then(() => {
       refreshPosts();
@@ -37,8 +37,8 @@ function PostCard({ idea, refreshPosts }) {
 
     if (!newTitle || !newDesc) return;
 
-    axios.put(
-      `http://127.0.0.1:8000/api/ideas/${idea.id}/`,
+    api.put(
+      `/api/ideas/${idea.id}/`,
       {
         title: newTitle,
         description: newDesc

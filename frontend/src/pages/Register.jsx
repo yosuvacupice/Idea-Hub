@@ -1,7 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import "../styles/Auth.css";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
+import api from "../api";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -27,7 +27,7 @@ function Register() {
       return;
     }
 
-    axios.post("http://127.0.0.1:8000/api/ideas/register/", {
+    api.post("/api/ideas/register/", {
       username,
       email,
       password
