@@ -1,0 +1,30 @@
+:root {
+  --primary: #1F3D8A;
+  --secondary: #4F46E5;
+  --bg: #F4F6FA;
+  --white: #ffffff;
+  --text-dark: #1F2937;
+  --text-light: #6B7280;
+  --border: #E5E7EB;
+
+  /* FONT SCALE */
+  --fs-sm: 14px;
+  --fs-md: 16px;
+  --fs-lg: 20px;
+  --fs-xl: 24px;
+  --fs-xxl: 28px;
+
+  --font-family: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--bg);
+  color: var(--text-dark);
+}

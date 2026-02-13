@@ -1,0 +1,670 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: #1F3D8A;
+  color: white;
+  padding: 30px 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.sidebar .logo {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 18px 0;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  opacity: 0.9;
+  transition: 0.2s;
+}
+
+.sidebar ul li.active-menu {
+  background: rgba(255,255,255,0.15);
+  padding: 8px 10px;
+  border-radius: 6px;
+  opacity: 1;
+  font-weight: 600;
+}
+
+/* MAIN AREA */
+.main {
+  flex: 1;
+  margin-left: 280px; /* same as sidebar width */
+  display: flex;
+  flex-direction: column;
+}
+
+
+.fixed-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+
+/* TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.topbar input {
+  width: 320px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.user-name {
+  font-weight: 600;
+}
+
+/* TABS */
+.tabs {
+  padding: 15px 30px;
+}
+
+.tabs button {
+  margin-right: 12px;
+  padding: 8px 18px;
+  border: none;
+  cursor: pointer;
+  background: #e3e8ff;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.tabs .active {
+  background: #1F3D8A;
+  color: white;
+}
+
+/* CONTENT SCROLL ONLY HERE */
+.content {
+  padding: 25px 30px;
+}
+
+/* POST CARD */
+.post-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.post-card h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.post-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.post-logo {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+
+.post-info {
+  display: flex;
+  gap: 25px;
+  font-size: 13px;
+  color: #666;
+}
+
+/* ================== Postcard.jsx ================ */
+.post-info {
+  display: flex;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.info-icon {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.info-icon.like {
+  color: #2563eb;
+}
+
+.info-icon.star {
+  color: #f59e0b;
+}
+
+.info-icon.comment {
+  color: #8b5cf6;
+}
+
+/* ================= IDEA DETAILS PAGE ================= */
+
+.rating-stars {
+  display: flex;
+  gap: 6px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.star-active {
+  color: #f59e0b;
+}
+
+.star-inactive {
+  color: #ddd;
+}
+
+.comments-section {
+  margin-top: 20px;
+}
+
+.comment-card {
+  background: #f9fafc;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #eee;
+}
+
+.comment-user {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.comment-text {
+  font-size: 14px;
+  color: #555;
+}
+
+.info-icon {
+  font-size: 18px;
+  cursor: pointer;
+  color: #999;   /* normal grey */
+  transition: 0.2s;
+}
+
+.info-icon:hover {
+  transform: scale(1.1);
+}
+
+.like-active {
+  color: #2563eb;   /* blue */
+}
+
+.dislike-active {
+  color: #ef4444;   /* red */
+}
+
+.post-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.post-actions svg {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.post-actions svg:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.post-actions svg:first-child {
+  color: #2563eb;
+}
+
+.post-actions svg:last-child {
+  color: #ef4444;
+}
+
+
+
+/* ===== Comment Input Section ===== */
+
+textarea {
+  width: 98%;
+  min-height: 80px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  margin-top: 10px;
+  outline: none;
+  transition: 0.2s;
+}
+
+textarea:focus {
+  border-color: #1F3D8A;
+  box-shadow: 0 0 0 2px rgba(31,61,138,0.1);
+}
+
+.comment-btn {
+  margin-top: 10px;
+  padding: 8px 18px;
+  background: #1F3D8A;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.comment-btn:hover {
+  background: #162d66;
+}
+
+
+/* ===== Like / Dislike Active ===== */
+
+.like-active {
+  color: #2563eb;
+}
+
+.dislike-active {
+  color: #ef4444;
+}
+
+/* ===== Comments UI ===== */
+
+.comment-card {
+  background: #f9fafc;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  border: 1px solid #eee;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.comment-user {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.msg-icon {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.msg-icon:hover {
+  opacity: 1;
+}
+
+.comment-text {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ================= PROFILE PAGE ================= */
+
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+}
+
+.profile-card {
+  width: 420px;
+  background: white;
+  padding: 30px 35px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.profile-title {
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+.profile-field {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-field label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.profile-field input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  background: #f9fafc;
+  color: #555;
+}
+
+.profile-field input:disabled {
+  cursor: not-allowed;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 10px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+/* ================= UPLOAD PAGE ================= */
+
+.upload-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.upload-card {
+  width: 500px;
+  background: white;
+  padding: 30px 35px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.upload-card h2 {
+  margin-bottom: 20px;
+}
+
+.upload-card label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 15px;
+  display: block;
+}
+
+.upload-card input[type="text"],
+.upload-card textarea,
+.upload-card input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.upload-card textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+.upload-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background: #1F3D8A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.upload-btn:hover {
+  background: #162d66;
+}
+
+.error-text {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.clickable:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.post-preview {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ================= Messages.jsx ================ */
+.message-card {
+  background: #f9fafc;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #eee;
+}
+
+.message-input,
+.message-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.message-textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+.send-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #1F3D8A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.send-btn:hover {
+  background: #162d66;
+}
+
+.user-suggestions {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background: #f1f1f1;
+}
+
+.message-popup {
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  background: #1F3D8A;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  /* Layout */
+  .layout {
+    flex-direction: column;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 15px;
+  }
+
+  .sidebar ul li {
+    margin: 12px 0;
+    font-size: 14px;
+  }
+
+  /* Main */
+  .main {
+    margin-left: 0;
+  }
+
+  /* Topbar */
+  .topbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .topbar input {
+    width: 100%;
+  }
+
+  /* Tabs */
+  .tabs {
+    padding: 10px 15px;
+  }
+
+  .tabs button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  /* Content */
+  .content {
+    padding: 15px;
+  }
+
+  /* Post card */
+  .post-card {
+    padding: 15px;
+  }
+
+  .post-card h2,
+  .post-card h3 {
+    font-size: 16px;
+  }
+
+  .post-card p {
+    font-size: 13px;
+  }
+
+  /* Post info icons */
+  .post-info {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  /* Profile */
+  .profile-card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  /* Upload */
+  .upload-card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  /* Messages */
+  .message-input,
+  .message-textarea {
+    font-size: 13px;
+  }
+
+  .message-card {
+    padding: 12px;
+  }
+
+  /* Popup */
+  .message-popup {
+    right: 20px;
+    left: 20px;
+    bottom: 20px;
+    text-align: center;
+  }
+
+}
